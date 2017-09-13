@@ -1,31 +1,143 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
+
+/**
+ * hide key store info into keystore.properties
+ */
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
+
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
+
     defaultConfig {
         applicationId "com.karlgao.kotlintemplate"
         minSdkVersion 21
         targetSdkVersion 26
+        ext.applicationName = "kotlin_fluffy"
         versionCode 1
         versionName "1.0"
+        project.ext.set("archivesBaseName", ext.applicationName + "_v_" + defaultConfig.versionName + "(" + defaultConfig.versionCode + ")")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile rootProject.file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    dexOptions {
+        maxProcessCount 8
+        javaMaxHeapSize "8g"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
     }
 }
 
+repositories {
+    maven { url "https://jitpack.io" }
+    maven {
+        url "https://dl.bintray.com/karlgao0811/MaterialRoundButton"
+    }
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
 dependencies {
+    ext.support_version = '26.0.2'
+    ext.play_service_version = '11.2.2'
+    ext.retrofit_version = '2.3.0'
+    ext.okhttp_version = '3.9.0'
+    ext.eventbus_version = '3.0.0'
+    ext.dagger_version = '2.11'
+    ext.uil_version = '1.9.5'
+    ext.rxjava_version = '2.1.3'
+    ext.rxkotlin_version = '2.1.0'
+
+    //Fundamental
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //Support Library
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+
+    //Google Play Service
+    implementation "com.google.android.gms:play-services-location:$play_service_version"
+    implementation "com.google.android.gms:play-services-maps:$play_service_version"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //Retrofit (Jackson is included in converter-jackson)
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //ReactiveX
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+
+    //Eventbus
+    implementation "org.greenrobot:eventbus:$eventbus_version"
+
+    //Universal Image Loader
+    implementation "com.nostra13.universalimageloader:universal-image-loader:$uil_version"
+
+    //Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //Optional libs
+    implementation 'org.parceler:parceler-api:1.1.8'
+    annotationProcessor 'org.parceler:parceler:1.1.8'
+
+    implementation 'org.jraf:prefs:1.1.1'
+    annotationProcessor 'org.jraf:prefs-compiler:1.1.1'
+
+    implementation 'com.karlgao.materialroundbutton:materialroundbutton:1.0.0'
+
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.easing:library:1.0.1@aar'
+    implementation 'com.daimajia.androidanimations:library:1.1.3@aar'
+
+
+    implementation 'com.github.yalantis:ucrop:2.2.1'
+//    implementation 'com.github.yalantis:ucrop:2.2.1-native'
+
+
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
 }
