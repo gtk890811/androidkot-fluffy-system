@@ -12,6 +12,8 @@ import javax.inject.Singleton
 
 /**
  * Component that registers different data provider
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Singleton

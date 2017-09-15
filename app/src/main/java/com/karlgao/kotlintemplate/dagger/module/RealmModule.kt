@@ -5,12 +5,10 @@ import io.realm.Realm
 import javax.inject.Singleton
 import dagger.Provides
 
-
-
-
-
 /**
- * Created by dev on 12/9/17.
+ * Module that provides realm object
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Module

@@ -5,10 +5,11 @@ import dagger.Module
 import javax.inject.Singleton
 import dagger.Provides
 
-
-
 /**
- * Created by dev on 12/9/17.
+ * Module that provides Web Service object
+ * including basic one and the one with token
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Module

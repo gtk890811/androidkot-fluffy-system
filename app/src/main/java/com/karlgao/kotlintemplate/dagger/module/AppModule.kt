@@ -10,20 +10,22 @@ import dagger.Provides
 
 
 /**
- * Created by dev on 12/9/17.
+ * Module that provides Application and Application Context
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Module
 class AppModule(private val mApp: App) {
 
     @Provides
-    internal fun provideApplication(): Application {
+    fun provideApplication(): Application {
         return mApp
     }
 
     @Provides
     @ApplicationContext
-    internal fun provideContext(): Context {
+    fun provideContext(): Context {
         return mApp.applicationContext
     }
 

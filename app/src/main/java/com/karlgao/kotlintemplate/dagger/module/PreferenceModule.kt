@@ -10,7 +10,9 @@ import dagger.Provides
 
 
 /**
- * Created by dev on 12/9/17.
+ * Module that provides preference object
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Module

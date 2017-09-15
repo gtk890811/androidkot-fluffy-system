@@ -1,7 +1,16 @@
 package com.karlgao.kotlintemplate.dagger.component
 
+import com.karlgao.kotlintemplate.dagger.scope.PerVM
+import dagger.Component
+
 /**
- * Created by dev on 12/9/17.
+ * Injection registration for each view model
+ *
+ * Created by Karl on 15/9/17.
  */
-class VMComponent {
+
+@PerVM
+@Component(dependencies = AppComponent.class)
+interface VMComponent {
+
 }

@@ -92,6 +92,9 @@ dependencies {
     implementation "com.android.support:design:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
 
+    //Data Binding Annotation
+    kapt "com.android.databinding:compiler:$gradle_version"
+
     //Google Play Service
     implementation "com.google.android.gms:play-services-location:$play_service_version"
     implementation "com.google.android.gms:play-services-maps:$play_service_version"

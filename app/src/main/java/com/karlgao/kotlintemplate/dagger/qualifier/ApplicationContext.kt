@@ -1,12 +1,11 @@
 package com.karlgao.kotlintemplate.dagger.qualifier
 
-import java.lang.annotation.RetentionPolicy
 import javax.inject.Qualifier
 
-
-
 /**
- * Created by dev on 12/9/17.
+ * Qualifier for separating Application Context from Activity Context
+ *
+ * Created by Karl on 15/9/17.
  */
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)

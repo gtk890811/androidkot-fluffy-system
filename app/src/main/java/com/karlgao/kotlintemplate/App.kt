@@ -8,24 +8,21 @@ import io.realm.RealmConfiguration
 import com.karlgao.kotlintemplate.dagger.module.AppModule
 
 
-
-
 /**
  * Application class
+ *
+ * Created by Karl on 15/9/17.
  */
-class App: Application() {
 
-    private lateinit var app: App
-    private lateinit var appComponent: AppComponent
+class App : Application() {
+
+    private val app: App = this
+    private val appComponent: AppComponent = DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
 
     override fun onCreate() {
         super.onCreate()
-
-        app = this
-        appComponent = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
-
 
         Realm.init(this)
         val realmConfiguration = RealmConfiguration.Builder()
@@ -36,12 +33,4 @@ class App: Application() {
         Realm.setDefaultConfiguration(realmConfiguration)
     }
 
-    // dagger
-    fun get(): App {
-        return app
-    }
-
-    fun getComponent(): AppComponent {
-        return appComponent
-    }
 }

@@ -3,7 +3,9 @@ package com.karlgao.kotlintemplate.dagger.qualifier
 import javax.inject.Qualifier
 
 /**
- * Created by dev on 12/9/17.
+ * Qualifier for separating Activity Context from Application Context
+ *
+ * Created by Karl on 15/9/17.
  */
 
 @Qualifier
