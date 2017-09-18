@@ -10,7 +10,7 @@ import dagger.Component
  */
 
 @PerVM
-@Component(dependencies = AppComponent.class)
+@Component(dependencies = arrayOf(AppComponent::class))
 interface VMComponent {
 
 }

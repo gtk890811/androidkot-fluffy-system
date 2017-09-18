@@ -7,8 +7,6 @@ import dagger.Module
 import com.karlgao.kotlintemplate.dagger.qualifier.ApplicationContext
 import dagger.Provides
 
-
-
 /**
  * Module that provides Application and Application Context
  *

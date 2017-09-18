@@ -1,7 +1,16 @@
 package com.karlgao.kotlintemplate
 
 /**
- * Created by dev on 12/9/17.
+ * Stores flags and info for different configuration
+ * (Normally we have debug, staging and release)
+ * e.g. log switch, base url
+ *
+ * Created by Karl on 18/9/17.
  */
-class AppConfig {
+
+object AppConfig {
+
+    val BuildType: String = BuildConfig.BUILD_TYPE
+    val BaseUrl: String = "asdasdw"
+
 }

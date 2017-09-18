@@ -6,16 +6,13 @@ import javax.inject.Singleton
 
 
 /**
- * Created by dev on 12/9/17.
+ * Queries for realm database
+ *
+ * Created by Karl on 18/9/17.
  */
+
 @Singleton
-class RealmManager {
-
-    var realm: Realm? = null
-
-    @Inject
-    fun RealmManager(realm: Realm){
-        this.realm = realm
-    }
+class RealmManager
+@Inject constructor(private val realm: Realm) {
 
 }

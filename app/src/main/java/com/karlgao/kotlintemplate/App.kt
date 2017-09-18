@@ -16,6 +16,7 @@ import com.karlgao.kotlintemplate.dagger.module.AppModule
 
 class App : Application() {
 
+    //todo
     private val app: App = this
     private val appComponent: AppComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this))

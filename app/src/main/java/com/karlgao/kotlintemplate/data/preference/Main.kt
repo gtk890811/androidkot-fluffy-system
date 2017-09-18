@@ -4,10 +4,12 @@ import org.jraf.android.prefs.Prefs
 import org.jraf.android.prefs.DefaultString
 
 /**
- * Created by dev on 12/9/17.
+ * Definition for each shared preference entry
+ *
+ * Created by Karl on 18/9/17.
  */
 @Prefs
-class PrefsKeys {
+class Main {
 
     @DefaultString("")
     var accessToken: String? = null
