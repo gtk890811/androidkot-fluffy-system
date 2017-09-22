@@ -14,7 +14,6 @@ import dagger.Provides
 @Module
 class RealmModule {
     @Provides
-    @Singleton
     fun provideRealm(): Realm {
         return Realm.getDefaultInstance()
     }

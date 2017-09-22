@@ -18,7 +18,6 @@ import dagger.Provides
 @Module
 class PreferenceModule {
     @Provides
-    @Singleton
     fun providePrefs(@ApplicationContext context: Context): MainPrefs {
         return MainPrefs.get(context)
     }

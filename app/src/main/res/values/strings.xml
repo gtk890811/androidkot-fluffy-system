@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KotlinTemplate</string>
+    <string name="title_activity_sample">SampleActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
 </resources>

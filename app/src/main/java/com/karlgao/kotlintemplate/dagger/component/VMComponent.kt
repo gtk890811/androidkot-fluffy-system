@@ -1,6 +1,7 @@
 package com.karlgao.kotlintemplate.dagger.component
 
 import com.karlgao.kotlintemplate.dagger.scope.PerVM
+import com.karlgao.kotlintemplate.vm.SampleVM
 import dagger.Component
 
 /**
@@ -12,5 +13,5 @@ import dagger.Component
 @PerVM
 @Component(dependencies = arrayOf(AppComponent::class))
 interface VMComponent {
-
+    fun inject(vm: SampleVM)
 }

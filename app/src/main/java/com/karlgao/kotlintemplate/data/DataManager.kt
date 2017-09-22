@@ -1,5 +1,11 @@
 package com.karlgao.kotlintemplate.data
 
+import com.karlgao.kotlintemplate.data.network.WebServiceManager
+import com.karlgao.kotlintemplate.data.preference.MainPrefs
+import com.karlgao.kotlintemplate.data.realm.RealmManager
+import javax.inject.Inject
+import javax.inject.Singleton
+
 /**
  * A place that links all data provider together and provides data to view models
  * Can also be used to save temp data for vm
@@ -8,6 +14,12 @@ package com.karlgao.kotlintemplate.data
  * Created by Karl on 18/9/17.
  */
 
-class DataManager {
+@Singleton
+class DataManager
+    @Inject constructor(val webServiceManager: WebServiceManager,
+                        val realmManager: RealmManager,
+                        val mainPrefs: MainPrefs){
+
+    var temp: String = "not initialized"
 
 }

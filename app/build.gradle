@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 /**
  * hide key store info into keystore.properties
@@ -25,6 +26,7 @@ android {
         versionName "1.0"
         project.ext.set("archivesBaseName", ext.applicationName + "_v_" + defaultConfig.versionName + "(" + defaultConfig.versionCode + ")")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -65,6 +67,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
     }
+//
+//    kapt {
+//        correctErrorTypes = true
+//    }
 }
 
 repositories {
@@ -77,7 +83,7 @@ repositories {
 
 
 dependencies {
-    ext.support_version = '26.0.2'
+    ext.support_version = '26.1.0'
     ext.play_service_version = '11.2.2'
     ext.retrofit_version = '2.3.0'
     ext.okhttp_version = '3.9.0'
@@ -87,6 +93,7 @@ dependencies {
     ext.rxjava_version = '2.1.3'
     ext.rxkotlin_version = '2.1.0'
     ext.anko_version = '0.10.1'
+    ext.timber_version = '4.5.1'
     ext.prefs_version = '1.2.1'
 
     //Fundamental
@@ -104,10 +111,6 @@ dependencies {
     //Google Play Service
     implementation "com.google.android.gms:play-services-location:$play_service_version"
     implementation "com.google.android.gms:play-services-maps:$play_service_version"
-
-    //Prefs
-    implementation "org.jraf:prefs:$prefs_version"
-    kapt "org.jraf:prefs-compiler:$prefs_version"
 
     //Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -131,7 +134,14 @@ dependencies {
     implementation "com.nostra13.universalimageloader:universal-image-loader:$uil_version"
 
     //Anko
-    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    //Prefs
+    implementation "org.jraf:prefs:$prefs_version"
+    kapt "org.jraf:prefs-compiler:$prefs_version"
 
     //Test
     testImplementation 'junit:junit:4.12'

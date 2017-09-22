@@ -4,6 +4,7 @@ import com.karlgao.kotlintemplate.dagger.module.AppModule
 import com.karlgao.kotlintemplate.dagger.module.PreferenceModule
 import com.karlgao.kotlintemplate.dagger.module.RealmModule
 import com.karlgao.kotlintemplate.dagger.module.RetrofitModule
+import com.karlgao.kotlintemplate.data.DataManager
 import com.karlgao.kotlintemplate.data.network.WebServiceManager
 import com.karlgao.kotlintemplate.data.preference.MainPrefs
 import com.karlgao.kotlintemplate.data.realm.RealmManager
@@ -20,8 +21,10 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class, PreferenceModule::class, RetrofitModule::class, RealmModule::class))
 interface AppComponent {
 
-    fun provideWebServiceManager(): WebServiceManager
-    fun providePrefs(): MainPrefs
-    fun provideRealm(): RealmManager
+//    fun provideWebServiceManager(): WebServiceManager
+//    fun providePrefs(): MainPrefs
+//    fun provideRealm(): RealmManager
+
+    fun provideDataManager(): DataManager
 
 }

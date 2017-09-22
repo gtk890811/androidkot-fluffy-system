@@ -6,6 +6,7 @@ import com.karlgao.kotlintemplate.dagger.component.DaggerAppComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import com.karlgao.kotlintemplate.dagger.module.AppModule
+import timber.log.Timber
 
 
 /**
@@ -16,15 +17,24 @@ import com.karlgao.kotlintemplate.dagger.module.AppModule
 
 class App : Application() {
 
-    //todo
-    private val app: App = this
-    private val appComponent: AppComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(this))
-            .build()
+    companion object {
+        lateinit var instance: App private set
+    }
+    lateinit var appComponent: AppComponent private set
 
     override fun onCreate() {
         super.onCreate()
 
+        instance = this
+
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
+
+        //Timber Setup
+        if (AppConfig.ENABLE_LOG) Timber.plant(Timber.DebugTree())
+
+        //Realm Setup
         Realm.init(this)
         val realmConfiguration = RealmConfiguration.Builder()
                 .name("fluffy_kot.realm")

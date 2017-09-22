@@ -17,6 +17,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+
+
 /**
  * Module that provides Web Service object
  * including basic one and the one with token
@@ -46,7 +48,7 @@ class RetrofitModule {
      */
     private fun getRetrofit(prefs: MainPrefs?): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(AppConfig.BaseUrl)
+                .baseUrl(AppConfig.BASE_URL)
                 .addConverterFactory(JacksonConverterFactory.create(ObjectMapper()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(getOKHttpClient(prefs))
@@ -70,8 +72,7 @@ class RetrofitModule {
      */
     private fun getLoggingInterceptor(): Interceptor {
         val logging = HttpLoggingInterceptor()
-        //todo : add NONE for none debug build
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        logging.level = if (AppConfig.ENABLE_LOG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         return logging
     }
 
