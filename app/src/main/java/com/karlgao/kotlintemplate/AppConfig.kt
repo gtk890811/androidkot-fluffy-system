@@ -20,7 +20,7 @@ object AppConfig {
     val IMAGE_SIZE: Int = 1000
     val IMAGE_COMPRESS_QUALITY: Int = 80
 
-
+    val PASSWORD_LENGTH: Int = 6
 
     //Build type based configuration
 
@@ -53,7 +53,7 @@ object AppConfig {
 
             else -> {
                 Log.wtf(GENERAL_TAG,"Build Type '$BUILD_TYPE' not recognized, the app won't work.")
-                BASE_URL = ""
+                BASE_URL = "https://www.google.com/"
                 ENABLE_LOG = false
                 EXTERNAL_STORAGE = false
                 DISABLE_AUTO_LOGIN = false

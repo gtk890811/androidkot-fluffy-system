@@ -67,10 +67,10 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
     }
-//
-//    kapt {
-//        correctErrorTypes = true
-//    }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 repositories {
