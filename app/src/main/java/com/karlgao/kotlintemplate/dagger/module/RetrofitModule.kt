@@ -6,6 +6,7 @@ import com.karlgao.kotlintemplate.dagger.qualifier.BasicAuth
 import com.karlgao.kotlintemplate.dagger.qualifier.TokenAuth
 import com.karlgao.kotlintemplate.data.network.WebService
 import com.karlgao.kotlintemplate.data.preference.MainPrefs
+import com.karlgao.kotlintemplate.util.isLogEnabled
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -14,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

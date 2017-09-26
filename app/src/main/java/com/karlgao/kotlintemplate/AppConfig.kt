@@ -60,9 +60,5 @@ object AppConfig {
                 PREFILL_CRENDENTIAL = false
             }
         }
-
     }
-
-
-
 }

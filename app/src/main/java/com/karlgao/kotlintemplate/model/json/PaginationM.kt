@@ -1,0 +1,24 @@
+package com.karlgao.kotlintemplate.model.json
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
+
+/**
+ * Pagination Model
+ *
+ * Created by Karl on 25/9/17.
+ */
+
+//Most commonly used as most model is built based on APIs
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class PaginationM (
+        val total: Int = 0,
+        val per_page : Int = 0,
+        val current_page: Int = 0,
+        val last_page: Int = 0,
+        val nest_page_url: String = "",
+        val prev_page_url: String = "",
+        val from: Int = 0,
+        val to: Int = 0
+)

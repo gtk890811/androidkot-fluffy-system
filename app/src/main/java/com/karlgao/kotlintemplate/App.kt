@@ -6,6 +6,7 @@ import com.karlgao.kotlintemplate.dagger.component.DaggerAppComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import com.karlgao.kotlintemplate.dagger.module.AppModule
+import com.karlgao.kotlintemplate.util.isLogEnabled
 import timber.log.Timber
 
 
@@ -20,6 +21,7 @@ class App : Application() {
     companion object {
         lateinit var instance: App private set
     }
+
     lateinit var appComponent: AppComponent private set
 
     override fun onCreate() {
@@ -32,7 +34,7 @@ class App : Application() {
                 .build()
 
         //Timber Setup
-        if (AppConfig.ENABLE_LOG) Timber.plant(Timber.DebugTree())
+        isLogEnabled { Timber.plant(Timber.DebugTree()) }
 
         //Realm Setup
         Realm.init(this)
