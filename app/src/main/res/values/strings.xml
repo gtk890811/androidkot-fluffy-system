@@ -2,4 +2,7 @@
     <string name="app_name">KotlinTemplate</string>
     <string name="title_activity_sample">SampleActivity</string>
     <string name="title_activity_base">BaseActivity</string>
+    <string name="btn_login">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

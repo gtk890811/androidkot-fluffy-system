@@ -1,5 +1,6 @@
 package com.karlgao.kotlintemplate
 
+import android.os.Build
 import android.util.Log
 
 /**
@@ -60,5 +61,15 @@ object AppConfig {
                 PREFILL_CRENDENTIAL = false
             }
         }
+    }
+
+    inline fun isLollipopOrAbove(func: () -> Unit) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            func()
+        }
+    }
+
+    inline fun isLogEnabled(func: () -> Unit) {
+        if (AppConfig.ENABLE_LOG) func()
     }
 }

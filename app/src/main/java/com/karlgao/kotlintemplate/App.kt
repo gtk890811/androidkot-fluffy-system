@@ -1,12 +1,12 @@
 package com.karlgao.kotlintemplate
 
 import android.app.Application
+import com.karlgao.kotlintemplate.AppConfig.isLogEnabled
 import com.karlgao.kotlintemplate.dagger.component.AppComponent
 import com.karlgao.kotlintemplate.dagger.component.DaggerAppComponent
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import com.karlgao.kotlintemplate.dagger.module.AppModule
-import com.karlgao.kotlintemplate.util.isLogEnabled
 import timber.log.Timber
 
 
@@ -22,16 +22,16 @@ class App : Application() {
         lateinit var instance: App private set
     }
 
-    lateinit var appComponent: AppComponent private set
+    val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .build()
+    }
 
     override fun onCreate() {
         super.onCreate()
 
         instance = this
-
-        appComponent = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
 
         //Timber Setup
         isLogEnabled { Timber.plant(Timber.DebugTree()) }

@@ -6,7 +6,6 @@ import com.karlgao.kotlintemplate.dagger.qualifier.BasicAuth
 import com.karlgao.kotlintemplate.dagger.qualifier.TokenAuth
 import com.karlgao.kotlintemplate.data.network.WebService
 import com.karlgao.kotlintemplate.data.preference.MainPrefs
-import com.karlgao.kotlintemplate.util.isLogEnabled
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

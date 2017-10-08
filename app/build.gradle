@@ -15,7 +15,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
 
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "com.karlgao.kotlintemplate"
@@ -82,7 +82,7 @@ repositories {
 
 dependencies {
     ext.support_version = '26.1.0'
-    ext.play_service_version = '11.2.2'
+    ext.play_service_version = '11.4.2'
     ext.retrofit_version = '2.3.0'
     ext.okhttp_version = '3.9.0'
     ext.eventbus_version = '3.0.0'
