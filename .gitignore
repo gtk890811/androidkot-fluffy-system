@@ -54,5 +54,5 @@ freeline.py
 freeline/
 freeline_project_description.json
 
-./singing certificate/
-./keystore.properties
+keystore.properties
+signing certificate
