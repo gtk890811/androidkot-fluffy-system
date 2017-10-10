@@ -13,14 +13,14 @@ import org.parceler.Parcel
 /**
  * Models should be created as follow
  * Supports for Jackson, Realm, Parceler
- * todo whether using val is ok or should force use var to be decided
+ * todo whether using val is ok or should force use var to be decided based on whether the network lib use set
  *
  * Created by Karl on 25/9/17.
  */
 
 // Basic type
 data class SampleDataClass(
-        val normalField: String = "",
+        var normalField: String = "",
         val normalField2: String = ""
 )
 

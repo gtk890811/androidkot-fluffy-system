@@ -12,7 +12,10 @@ import com.karlgao.kotlintemplate.dagger.component.VMComponent
 
 open class BaseVM {
 
-    protected val vmComponent: VMComponent = DaggerVMComponent.builder()
-            .appComponent(App.instance.appComponent)
-            .build()
+    protected val vmComponent: VMComponent by lazy {
+        DaggerVMComponent.builder()
+                .appComponent(App.instance.appComponent)
+                .build()
+    }
+
 }

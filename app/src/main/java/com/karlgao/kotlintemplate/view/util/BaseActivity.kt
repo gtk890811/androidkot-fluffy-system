@@ -1,7 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.karlgao.kotlintemplate.view.util
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
@@ -29,23 +32,31 @@ open class BaseActivity : AppCompatActivity() {
         private const val PERMISSION_REQUEST = 200
     }
 
-    //Progress Dialog
-
-
-    //Permissions
-    lateinit private var permissionResult: PermissionResult
-
-    interface PermissionResult {
-        fun permissionGranted()
-
-        fun permissionDenied()
+    //Progress Dialog (Deprecated. Try not to use this. Use inline ProgressBar instead)
+    private val pd: ProgressDialog by lazy {
+        ProgressDialog(this)
     }
 
-    fun askForPermission(vararg permissions: String, permissionResult: PermissionResult) {
-        this.permissionResult = permissionResult
+    fun showPD(message: String = "Please wait...") {
+        pd.setMessage(message)
+        pd.setCanceledOnTouchOutside(false)
+        pd.show()
+    }
+
+    fun dismissPD() {
+        pd.dismiss()
+    }
+
+    //Permissions
+    lateinit private var permissionGranted: () -> Unit
+    lateinit private var permissionDenied: () -> Unit
+
+    fun askForPermission(vararg permissions: String, permissionGranted: () -> Unit, permissionDenied: () -> Unit) {
+        this.permissionGranted = permissionGranted
+        this.permissionDenied = permissionDenied
         permissions.filter { !isPermissionGranted(it) }
         if (permissions.isEmpty() || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            permissionResult.permissionGranted()
+            permissionGranted.invoke()
         } else {
             requestPermissions(permissions, PERMISSION_REQUEST)
         }
@@ -61,9 +72,9 @@ open class BaseActivity : AppCompatActivity() {
             val granted = grantResults.any { grantResults.isNotEmpty() && it == PackageManager.PERMISSION_GRANTED }
 
             if (granted) {
-                permissionResult.permissionGranted()
+                permissionGranted.invoke()
             } else {
-                permissionResult.permissionDenied()
+                permissionDenied.invoke()
             }
         }
     }
@@ -99,7 +110,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    fun hasInternetConnection(): Boolean{
+    fun hasInternetConnection(): Boolean {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnectedOrConnecting
