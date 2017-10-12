@@ -1,8 +1,74 @@
 <resources>
+
     <string name="app_name">KotlinTemplate</string>
-    <string name="title_activity_sample">SampleActivity</string>
-    <string name="title_activity_base">BaseActivity</string>
-    <string name="btn_login">Log in</string>
+
+    <!--General Terms-->
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete">Delete</string>
+    <string name="submit">Submit</string>
+    <string name="confirm">Confirm</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="add">Add</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+
+    <string name="failure">Failure</string>
+    <string name="error">Error</string>
+    <string name="warning">Warning</string>
+    <string name="oops">Oops</string>
+
+    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Sign in</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="setting">Setting</string>
+    <string name="log_out">Log out</string>
+    <string name="forgot_password">Forgot password?</string>
     <string name="email">Email</string>
+    <string name="email_address">Email Address</string>
+    <string name="address">Address</string>
+    <string name="suburb">Suburb</string>
+    <string name="postcode">Postcode</string>
+    <string name="telephone">Telephone</string>
+    <string name="mobile">Mobile</string>
     <string name="password">Password</string>
+
+    <string name="required_field">Required Field</string>
+    <string name="invalid_field">Invalid Field</string>
+
+    <string name="network_failure_message">Please refer to log for detailed error message.</string>
+    <string name="network_error_message">Unknown error.</string>
+
+    <string name="network_failure_message_prod">Please make sure you have active internet connection and try again.</string>
+    <string name="network_error_message_prod">An error happened.\nPlease try again later.</string>
+
+    <!--Splash Activity-->
+    <string name="title_activity_splash">@string/app_name</string>
+
+    <!--Sign in Activity-->
+    <string name="title_activity_signin">@string/sign_in</string>
+
+    <!--Main Activity-->
+    <string name="title_activity_main">@string/app_name</string>
+
+    <!--Drawer Activity-->
+    <string name="title_activity_drawer">Drawer Layout Demo</string>
+
+    <!--Tab Activity-->
+    <string name="title_activity_tab">Tab Layout Demo</string>
+
+    <!--List Activity-->
+    <string name="title_activity_list">List Demo</string>
+
+    <!--Image Activity-->
+    <string name="title_activity_image">Image Util Demo</string>
+    <string name="image_description">Tap the camera button to change the above image.</string>
+
+    <!--Notification Activity-->
+    <string name="title_activity_notification">Notification Demo</string>
+
 </resources>
