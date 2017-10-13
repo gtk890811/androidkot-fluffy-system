@@ -57,9 +57,13 @@
 
     <!--Drawer Activity-->
     <string name="title_activity_drawer">Drawer Layout Demo</string>
+    <string name="item_a">Item A</string>
+    <string name="item_b">Item B</string>
 
     <!--Tab Activity-->
     <string name="title_activity_tab">Tab Layout Demo</string>
+    <string name="tab_a">Tab A</string>
+    <string name="tab_b">Tab B</string>
 
     <!--List Activity-->
     <string name="title_activity_list">List Demo</string>
