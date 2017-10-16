@@ -6,11 +6,11 @@
             <item
                 android:id="@+id/item_a"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="@string/item_a" />
+                android:title="@string/drawer_a" />
             <item
                 android:id="@+id/item_b"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="@string/item_b" />
+                android:title="@string/drawer_b" />
         </menu>
     </item>
 

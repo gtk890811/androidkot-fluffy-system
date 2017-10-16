@@ -11,6 +11,11 @@ import javax.inject.Inject
 /**
  * ViewModels should be created as follow
  *
+ * Name conventions: Just put the name convention rules suggested here as I don't know where else is suitable
+ * Note it is just suggested.
+ * XML: lowercase with underscore e.g. tv_route_no
+ * Java/Kotlin: camel-case e.g. routeNo
+ *
  * Created by Karl on 10/10/17.
  */
 

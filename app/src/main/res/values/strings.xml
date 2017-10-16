@@ -54,11 +54,18 @@
 
     <!--Main Activity-->
     <string name="title_activity_main">@string/app_name</string>
+    <string name="main_welcome">Welcome to the Android Kotlin template, here is a list of frequent implemented functionality.</string>
+    <string name="main_drawer">Drawer Layout</string>
+    <string name="main_tab">Tab Layout</string>
+    <string name="main_list">List (RecyclerView)</string>
+    <string name="main_image">Image Utility</string>
+    <string name="main_browser">Browser Utility</string>
+    <string name="main_pn">Push Notification</string>
 
     <!--Drawer Activity-->
     <string name="title_activity_drawer">Drawer Layout Demo</string>
-    <string name="item_a">Item A</string>
-    <string name="item_b">Item B</string>
+    <string name="drawer_a">Item A</string>
+    <string name="drawer_b">Item B</string>
 
     <!--Tab Activity-->
     <string name="title_activity_tab">Tab Layout Demo</string>
@@ -74,5 +81,18 @@
 
     <!--Notification Activity-->
     <string name="title_activity_notification">Notification Demo</string>
+    <string name="pn_hint">Place PN message here</string>
+    <string name="pn_local">Local PN</string>
+    <string name="pn_firebase">FireBase PN</string>
+    <string name="pn_rich_func">Rich Func PN</string>
+
+    <!--Item Fragment-->
+    <string name="frag_desc">Type something unique below to track fragment state</string>
+    <string name="frag_hint">Type here</string>
+    <string name="frag_a1">Fragment A1</string>
+    <string name="frag_a2">Fragment A2</string>
+    <string name="frag_b1">Fragment B1</string>
+    <string name="frag_b2">Fragment B2</string>
+
 
 </resources>
