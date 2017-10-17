@@ -2,17 +2,29 @@ package com.karlgao.kotlintemplate.view.ui
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySplashBinding
 import com.karlgao.kotlintemplate.view.util.BaseActivity
-import kotlinx.android.synthetic.main.activity_splash.*
+import org.jetbrains.anko.startActivity
 
-class SplashActivity: BaseActivity(){
+class SplashActivity : BaseActivity() {
+
+    companion object {
+        const val SPLASH_DELAY: Int = 3000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<ActivitySplashBinding>(this, R.layout.activity_splash)
-        autoDismissKeyboard(root)
+        fullScreen()
+        DataBindingUtil.setContentView<ActivitySplashBinding>(this, R.layout.activity_splash)
 
+        initAction()
+    }
+
+    private fun initAction() {
+        Handler().postDelayed({
+            startActivity<MainActivity>()
+        }, SPLASH_DELAY.toLong())
     }
 }

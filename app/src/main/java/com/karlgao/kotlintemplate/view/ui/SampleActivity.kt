@@ -29,8 +29,10 @@ class SampleActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //change layout option
+        fullScreen()
         portrait()
         adjustPan()
+
 
         //handle data passed through intent
 
