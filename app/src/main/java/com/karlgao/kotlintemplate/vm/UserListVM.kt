@@ -15,11 +15,11 @@ class UserListVM: BaseVM() {
     @Inject
     lateinit var dm: DataManager
 
+    val vms: List<UserVM> = ArrayList()
+
     init {
         vmComponent.inject(this)
     }
-
-    val vms: List<UserVM> = ArrayList()
 
     fun getUsers(){
         

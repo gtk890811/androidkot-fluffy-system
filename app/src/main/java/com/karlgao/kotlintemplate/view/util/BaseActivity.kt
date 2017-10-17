@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.ColorRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 
 
@@ -54,6 +56,22 @@ open class BaseActivity : AppCompatActivity() {
     }
     protected fun adjustResize(){
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE or WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN)
+    }
+
+    protected fun setStatusBarColor(@ColorRes res: Int){
+        AppConfig.isLollipopOrAbove {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = resources.getColor(res)
+        }
+    }
+
+    protected fun setNavigationBarColor(@ColorRes res: Int){
+        AppConfig.isLollipopOrAbove {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.navigationBarColor = resources.getColor(res)
+        }
     }
 
     //Progress Dialog (Deprecated. Try not to use this. Use inline ProgressBar instead)

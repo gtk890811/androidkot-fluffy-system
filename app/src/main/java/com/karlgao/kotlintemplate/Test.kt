@@ -7,8 +7,6 @@ import timber.log.Timber
  */
 class Test(var int: Int = 2) {
 
-
-
     private var str: String = "asd"
         get() = field
         set(value) {

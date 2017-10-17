@@ -17,15 +17,15 @@ class UserVM(var model: UserM = UserM()) : BaseVM() {
     @Inject
     lateinit var dm: DataManager
 
-    init {
-        vmComponent.inject(this)
-        initVM()
-    }
-
     val first_name: ObservableField<String> = ObservableField()
     val last_name: ObservableField<String> = ObservableField()
     val email: ObservableField<String> = ObservableField()
     val password: ObservableField<String> = ObservableField()
+
+    init {
+        vmComponent.inject(this)
+        initVM()
+    }
 
     private fun initVM(){
         first_name.set(model.first_name)

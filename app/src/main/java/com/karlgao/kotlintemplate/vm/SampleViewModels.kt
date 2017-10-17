@@ -26,15 +26,15 @@ class SampleVM (val model: SampleDataClass = SampleDataClass()) : BaseVM() {
     @Inject
     lateinit var dm: DataManager
 
+    // fields that will be used in the view(xml)
+    val normalField: ObservableField<String> = ObservableField()
+    val normalField2: ObservableField<String> = ObservableField()
+
     // injection and initialize field with model
     init {
         vmComponent.inject(this)
         initVM()
     }
-
-    // fields that will be used in the view(xml)
-    val normalField: ObservableField<String> = ObservableField()
-    val normalField2: ObservableField<String> = ObservableField()
 
     private fun initVM(){
         normalField.set(model.normalField)
@@ -63,13 +63,13 @@ class SampleListVM: BaseVM() {
     @Inject
     lateinit var dm: DataManager
 
+    // view model list
+    val vms: List<SampleDataClass> = ArrayList()
+
     // injection
     init {
         vmComponent.inject(this)
     }
-
-    // view model list
-    val vms: List<SampleDataClass> = ArrayList()
 
     // functions with business logic
     fun getSampleData(){
