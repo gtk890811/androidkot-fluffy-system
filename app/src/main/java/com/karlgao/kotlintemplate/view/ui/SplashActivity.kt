@@ -24,7 +24,7 @@ class SplashActivity : BaseActivity() {
 
     private fun initAction() {
         Handler().postDelayed({
-            startActivity<MainActivity>()
+            startActivity<SigninActivity>()
         }, SPLASH_DELAY.toLong())
     }
 }

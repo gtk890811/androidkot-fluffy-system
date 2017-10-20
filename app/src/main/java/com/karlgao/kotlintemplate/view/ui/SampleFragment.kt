@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySampleBinding
-import com.karlgao.kotlintemplate.databinding.FragmentA1Binding
 import com.karlgao.kotlintemplate.util.PermissionUtil
 import com.karlgao.kotlintemplate.view.util.BaseFragment
 import com.karlgao.kotlintemplate.vm.SampleVM

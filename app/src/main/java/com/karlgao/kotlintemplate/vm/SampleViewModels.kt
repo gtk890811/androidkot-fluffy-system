@@ -50,7 +50,7 @@ class SampleVM (val model: SampleDataClass = SampleDataClass()) : BaseVM() {
 
     // functions with business logic
     fun printToken() {
-        Timber.d(dm.mainPrefs.accessToken)
+        Timber.d(dm.prefs.accessToken)
     }
 }
 

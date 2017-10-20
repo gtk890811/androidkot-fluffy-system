@@ -51,6 +51,7 @@
 
     <!--Sign in Activity-->
     <string name="title_activity_signin">@string/sign_in</string>
+    <string name="signin_hint">The chance of signing in successfully is 50%</string>
 
     <!--Main Activity-->
     <string name="title_activity_main">@string/app_name</string>

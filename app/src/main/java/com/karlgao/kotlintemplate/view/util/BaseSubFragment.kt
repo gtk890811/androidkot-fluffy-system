@@ -7,7 +7,9 @@ import android.view.animation.AlphaAnimation
 
 
 /**
- * Created by dev on 17/10/17.
+ * Base sub Fragment class that holds sub class for tab and drawer
+ *
+ * Created by Karl on 19/10/17.
  */
 
 open class BaseSubFragment : BaseFragment() {

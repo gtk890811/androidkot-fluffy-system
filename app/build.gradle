@@ -88,6 +88,7 @@ dependencies {
     ext.eventbus_version = '3.0.0'
     ext.dagger_version = '2.11'
     ext.uil_version = '1.9.5'
+    ext.jackson_kotlin_version = '2.9.0'
     ext.rxjava_version = '2.1.3'
     ext.rxandroid_version = '2.0.1'
     ext.rxkotlin_version = '2.1.0'
@@ -121,6 +122,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //Jackson Kotlin Module
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_kotlin_version"
 
     //ReactiveX
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"

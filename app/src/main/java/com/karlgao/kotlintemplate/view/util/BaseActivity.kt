@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
@@ -21,7 +20,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.karlgao.kotlintemplate.AppConfig
-import com.karlgao.kotlintemplate.R
 
 
 /**
@@ -31,11 +29,14 @@ import com.karlgao.kotlintemplate.R
  */
 
 @SuppressLint("Registered")
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), ContextInterface {
 
     companion object {
         private const val PERMISSION_REQUEST = 200
     }
+
+    override val ba: BaseActivity
+        get() = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,59 +126,4 @@ open class BaseActivity : AppCompatActivity() {
             }
         }
     }
-
-    //Util functions
-    protected fun hideStatusBar() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    }
-
-    fun hideSoftKeyboard() {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        if (currentFocus != null) {
-            inputMethodManager.hideSoftInputFromWindow(currentFocus.windowToken, 0)
-            currentFocus.clearFocus()
-        }
-    }
-
-    fun autoDismissKeyboard(view: View) {
-        //Set up touch listener for non-text box views to hide keyboard.
-        if (view !is EditText) {
-            view.setOnTouchListener { _, _ ->
-                hideSoftKeyboard()
-                false
-            }
-        }
-
-        //If a layout container, iterate over children and seed recursion.
-        if (view is ViewGroup) {
-            (0 until view.childCount)
-                    .map { view.getChildAt(it) }
-                    .forEach { autoDismissKeyboard(it) }
-        }
-    }
-
-    fun hasInternetConnection(): Boolean {
-        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnectedOrConnecting
-    }
-
-    //Util functions that needs Context
-    inline fun isTablet(func: () -> Unit) {
-        if (resources.getBoolean(R.bool.is_tablet)) {
-            func()
-        }
-    }
-
-    fun Int.dpToPx(): Int {
-        val density = resources.displayMetrics.density
-        return (this * density).toInt()
-    }
-
-    fun Int.pxToDp(): Int {
-        val density = resources.displayMetrics.density
-        return (this / density).toInt()
-    }
-
 }

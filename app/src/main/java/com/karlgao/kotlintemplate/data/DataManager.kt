@@ -16,9 +16,9 @@ import javax.inject.Singleton
 
 @Singleton
 class DataManager
-    @Inject constructor(val webServiceManager: WebServiceManager,
-                        val realmManager: RealmManager,
-                        val mainPrefs: MainPrefs){
+    @Inject constructor(val web: WebServiceManager,
+                        val realm: RealmManager,
+                        val prefs: MainPrefs){
 
     var temp: String = "not initialized"
 

@@ -12,6 +12,8 @@ import org.jraf.android.prefs.DefaultString
 class Main {
 
     @DefaultString("")
-    var accessToken: String? = null
+    lateinit var accessToken: String
 
+    @DefaultString("")
+    lateinit var deviceToken: String
 }
