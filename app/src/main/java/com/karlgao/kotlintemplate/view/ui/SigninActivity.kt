@@ -6,12 +6,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
+import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySigninBinding
 import com.karlgao.kotlintemplate.util.onTextChange
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import com.karlgao.kotlintemplate.vm.UserVM
 import kotlinx.android.synthetic.main.activity_signin.*
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 
@@ -32,7 +34,18 @@ class SigninActivity : BaseActivity() {
 
         autoDismissKeyboard(root)
 
+        initView()
         initAction()
+    }
+
+    private fun initView() {
+        val debugEmail = "karl@yopmail.com"
+        val debugPassword = "123456"
+
+        AppConfig.isLogEnabled {
+            vm.email.set(debugEmail)
+            vm.password.set(debugPassword)
+        }
     }
 
     private fun initAction() {
@@ -42,8 +55,13 @@ class SigninActivity : BaseActivity() {
         et_password.onTextChange { til_password.error = null }
 
         btn_login.setOnClickListener {
-            if(validateInput()) {
-                vm.login()
+            if (validateInput()) {
+                showPD()
+                vm.login().init()
+                        .subscribe ({
+                            dismissPD()
+                            startActivity<MainActivity>()
+                        }, {})
             }
         }
     }
@@ -53,13 +71,13 @@ class SigninActivity : BaseActivity() {
         til_email.error = null
         til_password.error = null
 
-        if(!vm.validateEmail()){
+        if (!vm.validateEmail()) {
             pass = false
             til_email.error = resources.getString(R.string.invalid_field)
             YoYo.with(Techniques.Shake).duration(500).playOn(et_email)
         }
 
-        if(!vm.validatePassword()){
+        if (!vm.validatePassword()) {
             pass = false
             til_password.error = resources.getString(R.string.invalid_field)
             YoYo.with(Techniques.Shake).duration(500).playOn(et_password)

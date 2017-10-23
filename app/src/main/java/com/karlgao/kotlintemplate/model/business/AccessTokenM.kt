@@ -14,5 +14,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class AccessTokenM (
         @JsonProperty("access_token") val token : String = "",
-        val user : UserM = UserM()
+        @JsonProperty("user") val user : UserM = UserM()
 )

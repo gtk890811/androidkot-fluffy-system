@@ -9,6 +9,7 @@ import com.karlgao.kotlintemplate.util.email_isValid
 import com.karlgao.kotlintemplate.util.password_matchLength
 import com.karlgao.kotlintemplate.vm.util.BaseVM
 import io.reactivex.Observable
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -53,13 +54,15 @@ class UserVM(var model: UserM = UserM()) : BaseVM() {
     }
 
     private fun randomPass(): Boolean {
-        return Random().nextInt(100) <= 49
+        val lucky = Random().nextInt(100)
+        Timber.i("Your lucky number is $lucky")
+        return lucky % 2 == 0
     }
 
     fun login(): Observable<ResponseM<AccessTokenM>> {
         return if (randomPass()) dm.web.signIn(email.get(), password.get()) else dm.web.signInFail(email.get(), password.get())
-                .doOnNext { user ->
-                    dm.prefs.accessToken = user.data?.token
+                .doOnNext { response ->
+                    dm.prefs.accessToken = response.data?.token
                 }
     }
 

@@ -3,7 +3,6 @@ package com.karlgao.kotlintemplate.view.util
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.v7.app.AlertDialog
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -18,6 +17,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.okButton
 import retrofit2.HttpException
 
 
@@ -79,7 +79,7 @@ interface ContextInterface {
         return (this / density).toInt()
     }
 
-    fun <T> Observable<T>.init(): Observable<T> {
+    fun <T> Observable<T>.build(): Observable<T> {
         return this.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }
@@ -87,46 +87,48 @@ interface ContextInterface {
     fun onErrorDefault(): (extra: String) -> Unit {
         return { extra ->
             ba.dismissPD()
-            if (AppConfig.ENABLE_LOG) {
-                //todo
-//                AlertDialog.Builder(ba)
-//                        .setTitle("Failure")
-//                        .setMessage(e.throwable.message)
-//                        .setPositiveButton("OK", null)
-//                        .show()
-//                ba.alert(R.string.error, extra)
-            }
+            ba.alert(extra, ba.getString(R.string.error)) {
+                okButton {}
+            }.show()
         }
     }
 
     fun onFailureDefault(): (extra: String) -> Unit {
         return { extra ->
             ba.dismissPD()
-            if (AppConfig.ENABLE_LOG) {
-                //todo
-            }
+            ba.alert(extra, ba.getString(R.string.failure)) {
+                okButton {}
+            }.show()
         }
     }
 
-    fun <T> Observable<T>.error(error: (extra: String) -> Unit = onErrorDefault(), failure: (extra: String) -> Unit): Observable<T> {
-        return this.init()
+    // init network calls with general error handler, or pass in customise error handler
+    fun <T> Observable<T>.init(error: (extra: String) -> Unit = onErrorDefault(), failure: (extra: String) -> Unit = onFailureDefault()): Observable<T> {
+        return this.build()
                 .doOnError { t ->
                     if (t is HttpException) {
                         val errorBody = t.response().errorBody()
                         val errorMessage = t.message()
+                        val errorCode = t.code()
 
-                        var extra = ""
+                        var msg = ""
                         if (errorBody != null) {
                             val response: ResponseM<ErrorM> = ObjectMapper().readValue(errorBody.byteStream())
                             if (response.error != null) {
-                                extra = response.error.messages.joinToString("\n")
+                                msg = response.error.messages.joinToString("\n")
                             }
                         }
-                        if (extra.isEmpty()) extra = errorMessage
-                        error.invoke(extra)
+                        if (msg.isEmpty()) {
+                            msg = ba.getString(R.string.network_error_message_prod)
+                            AppConfig.isLogEnabled { msg = errorCode.toString() + " " + errorMessage }
+                        }
+                        error.invoke(msg)
                     } else {
-                        val extra = if (t.message != null) t.message!! else ""
-                        failure.invoke(extra)
+                        var msg = ba.getString(R.string.network_failure_message_prod)
+                        AppConfig.isLogEnabled {
+                            msg = if (t.message != null) t.message else ba.getString(R.string.network_failure_message)
+                        }
+                        failure.invoke(msg)
                     }
                 }
     }

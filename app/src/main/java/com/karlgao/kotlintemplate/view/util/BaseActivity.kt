@@ -3,22 +3,15 @@
 package com.karlgao.kotlintemplate.view.util
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorRes
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import com.karlgao.kotlintemplate.AppConfig
 
 

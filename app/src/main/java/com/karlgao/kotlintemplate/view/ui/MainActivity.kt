@@ -21,7 +21,12 @@ class MainActivity : BaseActivity() {
 
         setSupportActionBar(toolbar)
 
+        initView()
         initAction()
+    }
+
+    private fun initView(){
+//        supportActionBar.
     }
 
     private fun initAction() {

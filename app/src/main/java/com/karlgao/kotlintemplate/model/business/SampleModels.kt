@@ -13,7 +13,13 @@ import org.parceler.Parcel
 /**
  * Models should be created as follow
  * Supports for Jackson, Realm, Parceler
- * todo whether using val is ok or should force use var to be decided based on whether the network lib use set
+ *
+ * tips:
+ * * whether using val or var is based on whether the model will be used for later change
+ * * if one field is annotated with JsonProperty, all field need that, see AccessTokenM
+ * * (not sure) root class need the JsonCreator Annotation, see ResponseM
+ * * when use JsonCreator, all field needs to be annotated with JsonProperty
+ *
  *
  * Created by Karl on 25/9/17.
  */
