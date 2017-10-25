@@ -1,6 +1,5 @@
 package com.karlgao.kotlintemplate.view.util
 
-import android.app.Activity
 import android.support.v4.app.Fragment
 import com.karlgao.kotlintemplate.view.ui.MainActivity
 

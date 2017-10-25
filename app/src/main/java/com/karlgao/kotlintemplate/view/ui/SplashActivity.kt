@@ -8,6 +8,12 @@ import com.karlgao.kotlintemplate.databinding.ActivitySplashBinding
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import org.jetbrains.anko.startActivity
 
+/**
+ * Sample splash screen
+ *
+ * Created by Karl on 23/10/17.
+ */
+
 class SplashActivity : BaseActivity() {
 
     companion object {

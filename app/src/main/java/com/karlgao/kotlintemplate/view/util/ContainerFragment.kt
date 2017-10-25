@@ -11,7 +11,7 @@ import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.FragmentContainerBinding
 import com.karlgao.kotlintemplate.view.ui.fragments.A1Fragment
 import com.karlgao.kotlintemplate.view.ui.fragments.B1Fragment
-import kotlinx.android.synthetic.main.fragment_container.*
+import timber.log.Timber
 
 /**
  * Container fragment that handles navigation for sub fragments for tab and drawer
@@ -21,15 +21,16 @@ import kotlinx.android.synthetic.main.fragment_container.*
 
 class ContainerFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        DataBindingUtil.inflate<FragmentContainerBinding>(inflater, R.layout.fragment_container, container, false)
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            DataBindingUtil.inflate<FragmentContainerBinding>(inflater, R.layout.fragment_container, container, false).root
 
-        if (arguments != null) {
-            val position = arguments.getInt("position", 0)
-            initSubFragment(position)
-        }
 
-        return root
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val position = arguments?.getInt("position", 0) ?: 0
+        Timber.i("current position $position")
+        initSubFragment(position)
     }
 
     private fun initSubFragment(position: Int) {

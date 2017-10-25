@@ -3,6 +3,9 @@ package com.karlgao.kotlintemplate.view.util
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
+import android.support.annotation.ColorInt
+import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -13,9 +16,8 @@ import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.model.json.ErrorM
 import com.karlgao.kotlintemplate.model.json.ResponseM
+import com.karlgao.kotlintemplate.util.rxBuild
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.okButton
 import retrofit2.HttpException
@@ -79,9 +81,8 @@ interface ContextInterface {
         return (this / density).toInt()
     }
 
-    fun <T> Observable<T>.build(): Observable<T> {
-        return this.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+    fun getColorRes(@ColorRes res: Int): Int {
+        return ContextCompat.getColor(ba, res)
     }
 
     fun onErrorDefault(): (extra: String) -> Unit {
@@ -104,7 +105,7 @@ interface ContextInterface {
 
     // init network calls with general error handler, or pass in customise error handler
     fun <T> Observable<T>.init(error: (extra: String) -> Unit = onErrorDefault(), failure: (extra: String) -> Unit = onFailureDefault()): Observable<T> {
-        return this.build()
+        return this.rxBuild()
                 .doOnError { t ->
                     if (t is HttpException) {
                         val errorBody = t.response().errorBody()
@@ -114,9 +115,7 @@ interface ContextInterface {
                         var msg = ""
                         if (errorBody != null) {
                             val response: ResponseM<ErrorM> = ObjectMapper().readValue(errorBody.byteStream())
-                            if (response.error != null) {
-                                msg = response.error.messages.joinToString("\n")
-                            }
+                            msg = response.error?.messages?.joinToString("\n") ?: ""
                         }
                         if (msg.isEmpty()) {
                             msg = ba.getString(R.string.network_error_message_prod)

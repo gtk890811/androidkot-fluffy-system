@@ -16,10 +16,9 @@ import kotlinx.android.synthetic.main.fragment_b2.*
  * Created by Karl on 17/10/17.
  */
 
-class B2Fragment: BaseSubFragment(){
+class B2Fragment : BaseSubFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        DataBindingUtil.inflate<FragmentB2Binding>(inflater, R.layout.fragment_b2, container, false)
-        return root
-    }
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = DataBindingUtil.inflate<FragmentB2Binding>(inflater, R.layout.fragment_b2, container, false).root
+
 }

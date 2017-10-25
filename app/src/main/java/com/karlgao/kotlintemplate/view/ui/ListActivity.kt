@@ -5,9 +5,10 @@ import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 
 /**
- * Created by dev on 28/9/17.
+ * Recycler view sample
+ *
+ * Created by Karl on 23/10/17.
  */
-
 
 class ListActivity: BaseActivity() {
 

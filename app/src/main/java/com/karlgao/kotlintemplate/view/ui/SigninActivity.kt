@@ -2,25 +2,24 @@ package com.karlgao.kotlintemplate.view.ui
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySigninBinding
 import com.karlgao.kotlintemplate.util.onTextChange
+import com.karlgao.kotlintemplate.util.subscribeErrorFree
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import com.karlgao.kotlintemplate.vm.UserVM
 import kotlinx.android.synthetic.main.activity_signin.*
 import org.jetbrains.anko.startActivity
-import java.util.*
 
 
 /**
- * Created by dev on 28/9/17.
+ * Signin sample
+ *
+ * Created by Karl on 23/10/17.
  */
-
 
 class SigninActivity : BaseActivity() {
 
@@ -58,10 +57,10 @@ class SigninActivity : BaseActivity() {
             if (validateInput()) {
                 showPD()
                 vm.login().init()
-                        .subscribe ({
+                        .subscribeErrorFree {
                             dismissPD()
                             startActivity<MainActivity>()
-                        }, {})
+                        }
             }
         }
     }
@@ -73,13 +72,13 @@ class SigninActivity : BaseActivity() {
 
         if (!vm.validateEmail()) {
             pass = false
-            til_email.error = resources.getString(R.string.invalid_field)
+            til_email.error = getString(R.string.invalid_field)
             YoYo.with(Techniques.Shake).duration(500).playOn(et_email)
         }
 
         if (!vm.validatePassword()) {
             pass = false
-            til_password.error = resources.getString(R.string.invalid_field)
+            til_password.error = getString(R.string.invalid_field)
             YoYo.with(Techniques.Shake).duration(500).playOn(et_password)
         }
 

@@ -5,9 +5,10 @@ import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 
 /**
- * Created by dev on 17/10/17.
+ * Camera and gallery sample
+ *
+ * Created by Karl on 23/10/17.
  */
-
 
 class ImageActivity : BaseActivity() {
 

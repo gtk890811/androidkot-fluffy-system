@@ -23,6 +23,8 @@ object AppConfig {
 
     val PASSWORD_LENGTH: Int = 6
 
+    val SUPPORT_RESELECT_TAB: Boolean = false
+
     //Build type based configuration
 
     private const val BUILD_TYPE: String = BuildConfig.BUILD_TYPE

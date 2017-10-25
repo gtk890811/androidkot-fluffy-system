@@ -3,7 +3,6 @@ package com.karlgao.kotlintemplate.vm
 import android.databinding.ObservableField
 import com.karlgao.kotlintemplate.data.DataManager
 import com.karlgao.kotlintemplate.model.business.SampleDataClass
-import com.karlgao.kotlintemplate.model.business.UserM
 import com.karlgao.kotlintemplate.vm.util.BaseVM
 import timber.log.Timber
 import javax.inject.Inject

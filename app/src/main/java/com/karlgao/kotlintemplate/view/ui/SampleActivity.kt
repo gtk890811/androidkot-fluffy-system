@@ -59,10 +59,10 @@ class SampleActivity : BaseActivity() {
         askForPermission(
                 PermissionUtil.WRITE_EXTERNAL_STORAGE,
                 permissionGranted = {
-                    Timber.i("Permission Granted")
+                    Timber.d("Permission Granted")
                 },
                 permissionDenied = {
-                    Timber.i("Permission Denied")
+                    Timber.d("Permission Denied")
                 }
         )
     }

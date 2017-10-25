@@ -1,17 +1,21 @@
 package com.karlgao.kotlintemplate.view.ui
 
 import android.databinding.DataBindingUtil
-import android.media.Image
 import android.os.Bundle
 import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivityMainBinding
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 import org.jetbrains.anko.browse
 import org.jetbrains.anko.startActivity
 
+/**
+ * Main Activity
+ *
+ * Created by Karl on 23/10/17.
+ */
 
 class MainActivity : BaseActivity() {
 
@@ -21,12 +25,7 @@ class MainActivity : BaseActivity() {
 
         setSupportActionBar(toolbar)
 
-        initView()
         initAction()
-    }
-
-    private fun initView(){
-//        supportActionBar.
     }
 
     private fun initAction() {

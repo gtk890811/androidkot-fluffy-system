@@ -16,7 +16,7 @@ open class BaseSubFragment : BaseFragment() {
 
     protected val containerFragment: ContainerFragment by lazy { parentFragment as ContainerFragment }
 
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation {
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         // Apply the workaround only if this is a child fragment, and the parent
         // is being removed || detached.
 //        if(!enter && parent != null && !parent.isVisible())){

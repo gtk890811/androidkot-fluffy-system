@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/focusview" />
+        <include layout="@layout/layout_focusview" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -42,6 +42,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:importantForAutofill="noExcludeDescendants"
                 android:hint="@string/email"
                 android:text="@={user.email}"
                 android:inputType="textEmailAddress" />
@@ -60,6 +61,7 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:importantForAutofill="noExcludeDescendants"
                 android:hint="@string/password"
                 android:text="@={user.password}"
                 android:inputType="textPassword" />

@@ -21,10 +21,10 @@
             android:name=".view.ui.SplashActivity"
             android:label="@string/title_activity_splash">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
 
         </activity>
 
@@ -42,7 +42,14 @@
 
         <activity
             android:name=".view.ui.TabActivity"
-            android:label="@string/title_activity_tab" />
+            android:label="@string/title_activity_tab" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <activity
             android:name=".view.ui.ListActivity"

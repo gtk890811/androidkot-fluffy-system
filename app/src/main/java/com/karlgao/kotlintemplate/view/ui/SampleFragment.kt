@@ -30,12 +30,21 @@ class SampleFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<ActivitySampleBinding>(inflater, R.layout.activity_sample, container, false)
+
         binding.sample = vm
+        // NOTE: use root will cause some issues here
+        return binding.root
+    }
+
+    // or the simple syntax below if no view model is needed
+//    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+//            DataBindingUtil.inflate<ActivitySampleBinding>(inflater, R.layout.activity_sample, container, false).root
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initView()
         initAction()
-
-        return root
     }
 
     private fun initView(){
@@ -43,10 +52,10 @@ class SampleFragment : BaseFragment() {
         mainActivity.askForPermission(
                 PermissionUtil.WRITE_EXTERNAL_STORAGE,
                 permissionGranted = {
-                    Timber.i("Permission Granted")
+                    Timber.d("Permission Granted")
                 },
                 permissionDenied = {
-                    Timber.i("Permission Denied")
+                    Timber.d("Permission Denied")
                 }
         )
     }
