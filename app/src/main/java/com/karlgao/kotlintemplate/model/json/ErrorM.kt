@@ -13,5 +13,5 @@ import com.fasterxml.jackson.annotation.JsonInclude
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class ErrorM(
         val code: Int = -1,
-        val messages: List<String> = ArrayList()
+        val messages: List<String> = arrayListOf()
 )

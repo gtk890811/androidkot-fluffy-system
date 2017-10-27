@@ -4,19 +4,98 @@
 
     <data />
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include layout="@layout/layout_toolbar" />
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list"
+            <include layout="@layout/layout_toolbar" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </RelativeLayout>
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar">
+
+                <com.karlgao.kotlintemplate.view.widget.RecyclerViewWithEmptyView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/toolbar">
+
+                <android.support.v4.widget.NestedScrollView
+                    android:id="@+id/sv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/tvEmptyView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="100dp"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="8dp"
+                            android:text="@string/empty_message"
+                            android:textColor="@color/secondary_text"
+                            android:textSize="16sp" />
+
+                        <ProgressBar
+                            android:id="@+id/pb"
+                            style="?android:attr/progressBarStyleLarge"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="36dp"
+                            android:background="@android:color/transparent"
+                            android:indeterminateTint="@color/colorPrimary"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </android.support.v4.widget.NestedScrollView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+        </RelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_add_white_24dp"
+            app:layout_behavior="com.karlgao.kotlintemplate.view.widget.FabBehavior"/>
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </layout>

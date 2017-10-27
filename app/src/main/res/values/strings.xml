@@ -75,6 +75,8 @@
 
     <!--List Activity-->
     <string name="title_activity_list">List Demo</string>
+    <string name="list_instruction">Swipe delete, random add, drag around as u wish</string>
+    <string name="empty_message">There are no records at the moment.\nSwipe down to refresh the list</string>
 
     <!--Image Activity-->
     <string name="title_activity_image">Image Util Demo</string>

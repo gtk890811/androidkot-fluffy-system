@@ -133,6 +133,14 @@ open class BaseActivity : AppCompatActivity(), ContextInterface {
         }
     }
 
+    protected fun setNoLimitWindow() {
+        AppConfig.isLollipopOrAbove {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
+    }
+
     //Progress Dialog (Deprecated. Try not to use this. Use inline ProgressBar instead)
     private val pd: ProgressDialog by lazy {
         ProgressDialog(this)

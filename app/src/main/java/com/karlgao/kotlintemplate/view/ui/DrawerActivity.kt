@@ -13,7 +13,6 @@ import com.karlgao.kotlintemplate.view.util.ContainerFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.layout_drawer.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import timber.log.Timber
 
 /**
  * Drawer layout sample

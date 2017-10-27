@@ -63,7 +63,7 @@ class SampleListVM: BaseVM() {
     lateinit var dm: DataManager
 
     // view model list
-    val vms: List<SampleDataClass> = ArrayList()
+    val vms: MutableList<SampleDataClass> = arrayListOf()
 
     // injection
     init {

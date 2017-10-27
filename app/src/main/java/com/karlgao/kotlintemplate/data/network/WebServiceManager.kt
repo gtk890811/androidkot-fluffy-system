@@ -7,7 +7,7 @@ import com.karlgao.kotlintemplate.model.business.AccessTokenM
 import com.karlgao.kotlintemplate.model.business.UserM
 import com.karlgao.kotlintemplate.model.json.ListM
 import com.karlgao.kotlintemplate.model.json.ResponseM
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,7 +25,7 @@ class WebServiceManager
 
     private val mapper: ObjectMapper by lazy { ObjectMapper() }
 
-    fun signIn(email: String, password: String): Observable<ResponseM<AccessTokenM>> {
+    fun signIn(email: String, password: String): Single<ResponseM<AccessTokenM>> {
         val j = mapper.createObjectNode()
 
         j.put("email", email)
@@ -34,7 +34,7 @@ class WebServiceManager
         return basicAuth.sigIn(j)
     }
 
-    fun signInFail(email: String, password: String): Observable<ResponseM<AccessTokenM>> {
+    fun signInFail(email: String, password: String): Single<ResponseM<AccessTokenM>> {
         val j = mapper.createObjectNode()
 
         j.put("email", email)
@@ -43,7 +43,7 @@ class WebServiceManager
         return basicAuth.signInFail(j)
     }
 
-    fun getList(): Observable<ResponseM<ListM<UserM>>> {
+    fun getList(): Single<ResponseM<ListM<UserM>>> {
         return tokenAuth.getList(HashMap())
     }
 }

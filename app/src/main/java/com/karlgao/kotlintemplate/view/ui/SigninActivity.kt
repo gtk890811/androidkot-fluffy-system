@@ -7,8 +7,8 @@ import com.daimajia.androidanimations.library.YoYo
 import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySigninBinding
+import com.karlgao.kotlintemplate.util.sub
 import com.karlgao.kotlintemplate.util.onTextChange
-import com.karlgao.kotlintemplate.util.subscribeErrorFree
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import com.karlgao.kotlintemplate.vm.UserVM
 import kotlinx.android.synthetic.main.activity_signin.*
@@ -23,7 +23,7 @@ import org.jetbrains.anko.startActivity
 
 class SigninActivity : BaseActivity() {
 
-    val vm: UserVM by lazy { UserVM() }
+    private val vm: UserVM by lazy { UserVM() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,7 @@ class SigninActivity : BaseActivity() {
             if (validateInput()) {
                 showPD()
                 vm.login().init()
-                        .subscribeErrorFree {
+                        .sub {
                             dismissPD()
                             startActivity<MainActivity>()
                         }
@@ -84,5 +84,4 @@ class SigninActivity : BaseActivity() {
 
         return pass
     }
-
 }

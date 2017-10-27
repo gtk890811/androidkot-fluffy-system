@@ -17,7 +17,7 @@ import org.parceler.Parcel
  * tips:
  * * whether using val or var is based on whether the model will be used for later change
  * * if one field is annotated with JsonProperty, all field need that, see AccessTokenM
- * * (not sure) root class need the JsonCreator Annotation, see ResponseM
+ * * classes with field that does not have default value need the JsonCreator Annotation, see ResponseM, ListM
  * * when use JsonCreator, all field needs to be annotated with JsonProperty
  *
  *

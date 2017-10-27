@@ -3,7 +3,6 @@ package com.karlgao.kotlintemplate.view.util
 import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.v4.content.ContextCompat
 import android.view.View
@@ -17,10 +16,11 @@ import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.model.json.ErrorM
 import com.karlgao.kotlintemplate.model.json.ResponseM
 import com.karlgao.kotlintemplate.util.rxBuild
-import io.reactivex.Observable
+import io.reactivex.Single
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.okButton
 import retrofit2.HttpException
+import timber.log.Timber
 
 
 /**
@@ -104,7 +104,7 @@ interface ContextInterface {
     }
 
     // init network calls with general error handler, or pass in customise error handler
-    fun <T> Observable<T>.init(error: (extra: String) -> Unit = onErrorDefault(), failure: (extra: String) -> Unit = onFailureDefault()): Observable<T> {
+    fun <T> Single<T>.init(error: (extra: String) -> Unit = onErrorDefault(), failure: (extra: String) -> Unit = onFailureDefault()): Single<T> {
         return this.rxBuild()
                 .doOnError { t ->
                     if (t is HttpException) {
@@ -125,7 +125,12 @@ interface ContextInterface {
                     } else {
                         var msg = ba.getString(R.string.network_failure_message_prod)
                         AppConfig.isLogEnabled {
-                            msg = if (t.message != null) t.message else ba.getString(R.string.network_failure_message)
+                            msg = if (t.message != null) {
+                                Timber.d(t.message)
+                                t.message
+                            } else {
+                                ba.getString(R.string.network_failure_message)
+                            }
                         }
                         failure.invoke(msg)
                     }

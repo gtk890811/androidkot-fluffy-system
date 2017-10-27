@@ -24,7 +24,7 @@ import timber.log.Timber
 class SampleActivity : BaseActivity() {
 
     //init view model
-    val vm :SampleVM by lazy { SampleVM() }
+    private val vm :SampleVM by lazy { SampleVM() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

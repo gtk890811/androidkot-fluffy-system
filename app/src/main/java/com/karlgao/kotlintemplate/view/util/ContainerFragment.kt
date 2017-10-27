@@ -29,7 +29,7 @@ class ContainerFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val position = arguments?.getInt("position", 0) ?: 0
-        Timber.i("current position $position")
+        Timber.d("current position $position")
         initSubFragment(position)
     }
 
