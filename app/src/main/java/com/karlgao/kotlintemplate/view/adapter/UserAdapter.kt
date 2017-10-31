@@ -34,10 +34,10 @@ class UserAdapter(val items: MutableList<UserVM>) : RecyclerView.Adapter<UserAda
         return UserViewHolder(DataBindingUtil.inflate(inflater, R.layout.listitem_user, parent, false))
     }
 
-    inner class UserViewHolder(val binding: ListitemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class UserViewHolder(val binding: ListitemUserBinding) : RecyclerView.ViewHolder(binding.flRoot) {
 
         init {
-            binding.root.setOnClickListener {
+            binding.swipeTop.setOnClickListener {
                 onClick.invoke()
             }
         }

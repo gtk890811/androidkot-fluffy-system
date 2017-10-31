@@ -31,7 +31,7 @@ class SigninActivity : BaseActivity() {
         val binding = DataBindingUtil.setContentView<ActivitySigninBinding>(this, R.layout.activity_signin)
         binding.user = vm
 
-        autoDismissKeyboard(root)
+        autoDismissKeyboard(ll_root)
 
         initView()
         initAction()

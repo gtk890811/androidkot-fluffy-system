@@ -3,6 +3,7 @@ package com.karlgao.kotlintemplate.vm.util
 import com.karlgao.kotlintemplate.App
 import com.karlgao.kotlintemplate.dagger.component.DaggerVMComponent
 import com.karlgao.kotlintemplate.dagger.component.VMComponent
+import com.karlgao.kotlintemplate.view.adapter.ListItem
 
 /**
  * Base view model, provides component for injection
@@ -18,4 +19,8 @@ open class BaseVM {
                 .build()
     }
 
+    fun <T : BaseVM> wrap(vms: MutableList<T>, type: Int = 0): MutableList<ListItem<T>> {
+        return vms.map { item -> ListItem(item, type) }
+                .toMutableList()
+    }
 }

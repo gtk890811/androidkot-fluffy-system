@@ -55,7 +55,7 @@ class ContainerFragment : BaseFragment() {
         if (isEmpty) {
             childFragmentManager.beginTransaction()
                     .setAnim()
-                    .add(R.id.root, f, f.javaClass.name)
+                    .add(R.id.container, f, f.javaClass.name)
                     .commit()
         }
     }
@@ -68,7 +68,7 @@ class ContainerFragment : BaseFragment() {
     fun addFragment(f: Fragment) {
         childFragmentManager.beginTransaction()
                 .setAnim()
-                .replace(R.id.root, f, f.javaClass.name)
+                .replace(R.id.container, f, f.javaClass.name)
                 .addToBackStack(f.javaClass.name)
                 .commit()
     }
@@ -97,7 +97,7 @@ class ContainerFragment : BaseFragment() {
         }
         childFragmentManager.beginTransaction()
                 .setAnim()
-                .replace(R.id.root, f, f.javaClass.name)
+                .replace(R.id.container, f, f.javaClass.name)
                 .addToBackStack(f.javaClass.name)
                 .commit()
     }

@@ -41,7 +41,7 @@ class SampleActivity : BaseActivity() {
         binding.sample = vm
 
         //init keyboard hiding
-        autoDismissKeyboard(root)
+        autoDismissKeyboard(cl_root)
 
         //init actionbar
         setSupportActionBar(toolbar)

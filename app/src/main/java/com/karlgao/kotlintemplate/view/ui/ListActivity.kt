@@ -2,6 +2,7 @@ package com.karlgao.kotlintemplate.view.ui
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivityListBinding
@@ -37,9 +38,9 @@ class ListActivity : BaseActivity() {
     }
 
     private fun initList() {
-        rv.setHasFixedSize(true) // ?? test
+        rv.setHasFixedSize(true) // enable this for better performance
         rv.layoutManager = LinearLayoutManager(this) // Or gridLayoutManager if needs grid
-        (rv.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false // ?? test
+        (rv.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = true // disable the change animation(flash) when you call adapter.notifyItemChange
         rv.setEmptyView(srl_empty)
 //        rv.setAttachedView(srl) // if you want to set any view that shows with recycler view
 
@@ -55,6 +56,10 @@ class ListActivity : BaseActivity() {
         srl_empty.setOnRefreshListener { fetchData() }
 
         //onclick
+        adapter.onItemClick {
+            Snackbar.make(cl_root, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+        }
     }
 
     private fun fetchData() {
