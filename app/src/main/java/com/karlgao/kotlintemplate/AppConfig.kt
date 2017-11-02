@@ -25,6 +25,11 @@ object AppConfig {
 
     val SUPPORT_RESELECT_TAB: Boolean = false
 
+
+    //list pagination
+    val DEFAULT_PER_PAGE = 9
+    val VISIBLE_THRESHOLD = 0
+
     //Build type based configuration
 
     private const val BUILD_TYPE: String = BuildConfig.BUILD_TYPE

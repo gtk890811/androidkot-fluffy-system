@@ -3,7 +3,7 @@ package com.karlgao.kotlintemplate.vm.util
 import com.karlgao.kotlintemplate.App
 import com.karlgao.kotlintemplate.dagger.component.DaggerVMComponent
 import com.karlgao.kotlintemplate.dagger.component.VMComponent
-import com.karlgao.kotlintemplate.view.adapter.ListItem
+import com.karlgao.kotlintemplate.view.util.ListItem
 
 /**
  * Base view model, provides component for injection

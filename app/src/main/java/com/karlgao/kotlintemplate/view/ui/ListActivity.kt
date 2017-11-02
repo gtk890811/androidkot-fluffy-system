@@ -4,16 +4,18 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.SimpleItemAnimator
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivityListBinding
+import com.karlgao.kotlintemplate.util.setOnLoadMoreListener
+import com.karlgao.kotlintemplate.util.success
 import com.karlgao.kotlintemplate.view.util.BaseActivity
-import android.support.v7.widget.SimpleItemAnimator
-import com.karlgao.kotlintemplate.util.sub
-import com.karlgao.kotlintemplate.view.adapter.UserAdapter
+import com.karlgao.kotlintemplate.view.vh.adapter.RecyclerAdapter
 import com.karlgao.kotlintemplate.vm.UserListVM
+import com.karlgao.kotlintemplate.vm.UserVM
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import kotlin.properties.Delegates
+import timber.log.Timber
 
 
 /**
@@ -25,7 +27,7 @@ import kotlin.properties.Delegates
 class ListActivity : BaseActivity() {
 
     private val vm: UserListVM by lazy { UserListVM() }
-    private val adapter: UserAdapter by lazy { UserAdapter(vm.vms) }
+    private val adapter: RecyclerAdapter<UserVM> by lazy { RecyclerAdapter(vm.vms) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +51,18 @@ class ListActivity : BaseActivity() {
 
         //adapter
         rv.adapter = adapter
+        adapter.enableEndlessScroll()
     }
 
     private fun initAction() {
         srl.setOnRefreshListener { fetchData() }
         srl_empty.setOnRefreshListener { fetchData() }
 
+        rv.setOnLoadMoreListener { fetchData() }
+
         //onclick
-        adapter.onItemClick {
+        adapter.onItemClick { position ->
+            Timber.d("$position")
             Snackbar.make(cl_root, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
@@ -64,7 +70,7 @@ class ListActivity : BaseActivity() {
 
     private fun fetchData() {
         vm.getUsers().init()
-                .sub {
+                .success {
                     srl.isRefreshing = false
                     srl_empty.isRefreshing = false
                     adapter.notifyDataSetChanged()

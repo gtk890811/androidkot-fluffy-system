@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude
  * Created by Karl on 25/9/17.
  */
 
-//Most commonly used as most model is built based on APIs
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class PaginationM (

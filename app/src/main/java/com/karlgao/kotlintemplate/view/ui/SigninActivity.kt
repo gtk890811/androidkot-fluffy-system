@@ -7,7 +7,7 @@ import com.daimajia.androidanimations.library.YoYo
 import com.karlgao.kotlintemplate.AppConfig
 import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.databinding.ActivitySigninBinding
-import com.karlgao.kotlintemplate.util.sub
+import com.karlgao.kotlintemplate.util.success
 import com.karlgao.kotlintemplate.util.onTextChange
 import com.karlgao.kotlintemplate.view.util.BaseActivity
 import com.karlgao.kotlintemplate.vm.UserVM
@@ -57,7 +57,7 @@ class SigninActivity : BaseActivity() {
             if (validateInput()) {
                 showPD()
                 vm.login().init()
-                        .sub {
+                        .success {
                             dismissPD()
                             startActivity<MainActivity>()
                         }

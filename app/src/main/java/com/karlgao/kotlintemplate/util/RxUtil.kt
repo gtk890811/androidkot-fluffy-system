@@ -17,6 +17,6 @@ fun <T> Single<T>.rxBuild(): Single<T> {
 }
 
 // implementation to avoid putting an empty error implementation
-fun <T> Single<T>.sub(onSuccess: (t: T) -> Unit): Disposable {
+fun <T> Single<T>.success(onSuccess: (t: T) -> Unit): Disposable {
     return this.subscribe(onSuccess, {})
 }
