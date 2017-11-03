@@ -12,17 +12,18 @@ import com.karlgao.kotlintemplate.vm.UserVM
 
 
 // Include at least the clickEvent listener and implement it in init.
-// If multiple clickEvent is needed, use the below comment constructor ---------------------+
-//                                                                                          |
-//                                                                                          |
-//                                                                                          V
-// class UserVH(val binding: ListitemUserBinding, clickEvent: (position: Int) -> Unit, otherEvents: Array<out (position: Int) -> Unit>) : BaseViewHolder<UserVM>(binding.root) {
+// If multiple clickEvent is needed, use the below comment constructor
+// Define event type in an companion object                            ----------------------+
+//                                                                                           |
+//                                                                                           |
+//                                                                                           V
+// class UserVH(val binding: ListitemUserBinding, clickEvent: ((position: Int) -> Unit)?, otherEvents: ((event: String, position: Int) -> Unit)?) : BaseViewHolder<UserVM>(binding.root) {
 
-class SampleVH(val binding: ListitemUserBinding, clickEvent: (position: Int) -> Unit) : BaseViewHolder<UserVM>(binding.root) {
+class SampleVH(val binding: ListitemUserBinding, clickEvent: ((position: Int) -> Unit)?) : BaseViewHolder<UserVM>(binding.root) {
 
     // click event should be done in constructor
     init {
-        binding.swipeTop.setOnClickListener { clickEvent.invoke(layoutPosition) }
+        binding.swipeTop.setOnClickListener { clickEvent?.invoke(layoutPosition) }
     }
 
     // change data in bind

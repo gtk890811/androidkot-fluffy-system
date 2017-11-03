@@ -43,7 +43,7 @@ class WebServiceManager
         return basicAuth.signInFail(j)
     }
 
-    fun getList(): Single<ResponseM<ListM<UserM>>> {
-        return tokenAuth.getList(HashMap())
+    fun getList(query: HashMap<String,String>): Single<ResponseM<ListM<UserM>>> {
+        return tokenAuth.getList(query)
     }
 }

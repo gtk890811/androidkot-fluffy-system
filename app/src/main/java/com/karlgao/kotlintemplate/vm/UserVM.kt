@@ -47,6 +47,10 @@ class UserVM(var model: UserM = UserM()) : BaseVM() {
         return model
     }
 
+    fun setFullName(name: String) {
+        fullName.set(name)
+    }
+
     fun validateEmail(): Boolean {
         return !email.get().isEmpty() && email.get().email_isValid()
     }

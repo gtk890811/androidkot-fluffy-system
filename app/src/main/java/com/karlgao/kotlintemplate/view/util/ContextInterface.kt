@@ -16,6 +16,8 @@ import com.karlgao.kotlintemplate.R
 import com.karlgao.kotlintemplate.model.json.ErrorM
 import com.karlgao.kotlintemplate.model.json.ResponseM
 import com.karlgao.kotlintemplate.util.rxBuild
+import com.karlgao.kotlintemplate.view.vh.adapter.RecyclerAdapter
+import com.karlgao.kotlintemplate.vm.util.BaseVM
 import io.reactivex.Single
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.okButton
@@ -135,5 +137,19 @@ interface ContextInterface {
                         failure.invoke(msg)
                     }
                 }
+    }
+
+    fun <T : BaseVM> endlessScrollImpl(adapter: RecyclerAdapter<T>, sizeBefore: Int, sizeAfter: Int, isLoadMore: Boolean, isLast: Boolean) {
+        if (!isLoadMore) {
+            adapter.notifyItemRangeChanged(0, sizeAfter)
+            adapter.notifyItemRangeRemoved(sizeAfter, sizeBefore)
+        } else {
+            adapter.setLoaderVisible(false)
+            //position sizeBefore is replaced with notifyItemChange
+            adapter.notifyItemRangeInserted(sizeBefore + 1, sizeAfter)
+            if (!isLast) {
+                adapter.setLoaderVisible(true)
+            }
+        }
     }
 }

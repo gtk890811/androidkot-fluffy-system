@@ -16,7 +16,7 @@ data class PaginationM (
         val per_page : Int = 0,
         val current_page: Int = 0,
         val last_page: Int = 0,
-        val nest_page_url: String = "",
+        val next_page_url: String = "",
         val prev_page_url: String = "",
         val from: Int = 0,
         val to: Int = 0

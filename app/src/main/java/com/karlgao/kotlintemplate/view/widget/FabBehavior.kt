@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat
 import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.util.AttributeSet
 import android.view.View
+import timber.log.Timber
 
 
 /**

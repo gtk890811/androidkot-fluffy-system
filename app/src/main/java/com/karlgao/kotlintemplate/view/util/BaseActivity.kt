@@ -11,7 +11,9 @@ import android.os.Bundle
 import android.support.annotation.ColorRes
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.karlgao.kotlintemplate.AppConfig
@@ -89,15 +91,19 @@ open class BaseActivity : AppCompatActivity(), ContextInterface {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
             if (toolbar != null) {
-                val statusHeight = getStatusBarHeight()
-                val toolbarHeight = 56.dpToPx()
-                toolbar.layoutParams.height = toolbarHeight + statusHeight
-                toolbar.setPadding(toolbar.paddingLeft,
-                        toolbar.paddingTop + statusHeight,
-                        toolbar.paddingRight,
-                        toolbar.paddingBottom)
+                extendViewUnderStatusBar(toolbar)
             }
         }
+    }
+
+    protected fun extendViewUnderStatusBar(view: View) {
+        val statusHeight = getStatusBarHeight()
+        val toolbarHeight = 56.dpToPx()
+        view.layoutParams.height = toolbarHeight + statusHeight
+        view.setPadding(view.paddingLeft,
+                view.paddingTop + statusHeight,
+                view.paddingRight,
+                view.paddingBottom)
     }
 
     protected fun setStatusBarColor(@ColorRes res: Int) {
@@ -114,15 +120,19 @@ open class BaseActivity : AppCompatActivity(), ContextInterface {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
 
             if (tab != null) {
-                val navHeight = getNavigationBarHeight()
-                val tabHeight = 56.dpToPx()
-                tab.layoutParams.height = tabHeight + navHeight
-                tab.setPadding(tab.paddingLeft,
-                        tab.paddingTop,
-                        tab.paddingRight,
-                        tab.paddingBottom +navHeight)
+                extendViewUnderNavigationBar(tab)
             }
         }
+    }
+
+    protected fun extendViewUnderNavigationBar(view: View) {
+        val navHeight = getNavigationBarHeight()
+        val tabHeight = 56.dpToPx()
+        view.layoutParams.height = tabHeight + navHeight
+        view.setPadding(view.paddingLeft,
+                view.paddingTop,
+                view.paddingRight,
+                view.paddingBottom + navHeight)
     }
 
     protected fun setNavigationBarColor(@ColorRes res: Int) {

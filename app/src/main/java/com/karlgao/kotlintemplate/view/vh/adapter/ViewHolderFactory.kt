@@ -34,7 +34,7 @@ interface ViewHolderFactory {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun <T : BaseVM> getViewHolder(parent: ViewGroup, viewType: Int, clickEvent: (position: Int) -> Unit, otherEvents: Array<out (position: Int) -> Unit>): BaseViewHolder<T> {
+    fun <T : BaseVM> getViewHolder(parent: ViewGroup, viewType: Int, clickEvent: ((position: Int) -> Unit)?, otherEvents: ((event: String, position: Int) -> Unit)?): BaseViewHolder<T> {
         val inflater = parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         val holder = when (viewType) {

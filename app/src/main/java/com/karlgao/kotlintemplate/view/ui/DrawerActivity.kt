@@ -26,7 +26,8 @@ class DrawerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<ActivityDrawerBinding>(this, R.layout.activity_drawer)
 
-        setStatusBarTranslucent(toolbar)
+        setStatusBarTranslucent()
+        extendViewUnderStatusBar(toolbar)
 
         setSupportActionBar(toolbar)
 

@@ -2,6 +2,7 @@ package com.karlgao.kotlintemplate.model.json
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
+import com.karlgao.kotlintemplate.AppConfig
 
 /**
  * Query Model
@@ -16,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonInclude
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class QueryM(
-        val per_page: Int = 0,
-        val page: Int = 0
+        var per_page: Int = AppConfig.DEFAULT_PER_PAGE,
+        var page: Int = 0
 ) {
     fun getHashMap(): HashMap<String, String> {
         return hashMapOf(
