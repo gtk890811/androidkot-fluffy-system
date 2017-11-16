@@ -145,5 +145,4 @@ class ListActivity : BaseActivity() {
                     endlessScrollImpl(adapter, sizeBefore, sizeAfter, isLoadMore, vm.isLastPage())
                 }
     }
-
 }

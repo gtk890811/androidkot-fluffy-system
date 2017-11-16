@@ -11,6 +11,7 @@ import com.karlgao.kotlintemplate.view.util.ListItem
  * Created by Karl on 25/9/17.
  */
 
+//todo use android architecture components ViewModel & LiveData
 open class BaseVM {
 
     protected val vmComponent: VMComponent by lazy {
